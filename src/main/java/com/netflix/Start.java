@@ -1,33 +1,14 @@
 package com.netflix;
 
-// THIS IS MAIN
+// THIS IS MAIN NOW
 public class Start {
     public static void main(String[] args) {
 
         Menu.ShowMenu();
 
-        //Then add these to the start code
-        MovieList myList = new MovieList();
-
-        myList.addMovie("Inception", 4.8);
-        myList.addMovie("The Dark Knight", 4.9);
-
-        myList.displayAll();
-
-        myList.updateRating("Inception", 5.0);
-        myList.showCount();
-
-
-        System.out.println("\n🎞️ Your Movies:");
-        for (int i = 0; i < movies.size(); i++) {
-            System.out.printf("%d) %s%n", i + 1, movies.get(i));
-        }
     }
+}
 
-        public void displayAll2 () {
-            for (Movie m : movies) System.out.println(m);
-        }
-    }
 
 
        /* ArrayList<Student> allStudents = new ArrayList<>();

@@ -1,21 +1,16 @@
 package com.netflix;
-
 import java.util.Scanner;
 
 public class Menu {
 
     public static void ShowMenu() {
-
         Scanner scanner = new Scanner(System.in);
-
-        //boolean running = true;
+        MovieList list = new MovieList();
+        list.loadFromCsv("movies.csv"); // ✅ same file for load + save
         boolean running = true;
-       // System.out.println(" Welcome to your Movie Watchlist!");
 
-        //while (true) {
-        while (true) {
+        while (running) {
             System.out.println("\n🎬 Welcome to your Movie Watchlist!");
-            System.out.println("Choose an option:");
             System.out.println("1. Add a movie");
             System.out.println("2. Display all movies");
             System.out.println("3. Rate a movie");
@@ -24,70 +19,38 @@ public class Menu {
             System.out.print("Pick here: ");
 
             int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
             switch (choice) {
-                case 1 -> System.out.println("You chose to add a movie!");
-                case 2 -> System.out.println("Displaying your movies...");
-                case 3 -> System.out.println("Let's rate a movie!");
-                case 4 -> System.out.println("You have X movies.");
+                case 1 -> addMovie(list, scanner);
+                case 2 -> list.displayAll();
+                case 3 -> rateMovie(list, scanner);
+                case 4 -> list.showCount();
                 case 5 -> {
-                    System.out.println("Goodbye!");
+                    list.saveToCsv("movies.csv");
+                    System.out.println("💾 Changes saved. Goodbye!");
                     running = false;
                 }
-                default -> System.out.println("Invalid choice, try again!");
+                default -> System.out.println("⚠️ Invalid choice, try again!");
             }
         }
     }
+
+    private static void addMovie(MovieList list, Scanner scanner) {
+        System.out.print("Enter movie title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter rating (0–5): ");
+        double rating = scanner.nextDouble();
+        list.addMovie(title, rating);
+        list.saveToCsv("movies.csv");
+    }
+
+    private static void rateMovie(MovieList list, Scanner scanner) {
+        System.out.print("Enter movie title to rate: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter new rating (0–5): ");
+        double rating = scanner.nextDouble();
+        list.updateRating(title, rating);
+        list.saveToCsv("movies.csv");
+    }
 }
-
-            //Scanner scanner.nextLine(); // clear ENTER
-//            switch (choice) {
-//                case 1:
-//                    System.out.print("Enter movie title: ");
-//                    String movie = scanner.nextLine();
-//                    watchlist.add(movie);
-//                    System.out.println(movie + " added to your watchlist!");
-//                    break;
-//                case 2:
-//                    if (watchlist.isEmpty()) {
-//                        System.out.println("No movies yet —add some first!");
-//                    } else {
-//
-//
-//                        //For each
-//                        for (String movieTitle : watchlist) {
-//                            String rating;
-//
-//                            if (ratings.containsKey(movieTitle)) {
-//                                rating = "⭐" + ratings.get(movieTitle);
-//                            } else {
-//                                rating = "Not rated yet";
-//                            }
-//
-//                            System.out.println("-" + movieTitle + " (" + rating + ")");
-//                        }
-//                        System.out.println("Total movies: " + watchlist.size());
-//                    }
-//                    break;
-//                case 3:
-//                    System.out.print("Enter movie to rate: ");
-//                    String rateMovie = scanner.nextLine();
-//                    if (watchlist.contains(rateMovie)) {
-//                        System.out.print("Enter rating (0-10): ");
-//                        double rate = scanner.nextDouble();
-//                        scanner.nextLine();
-//                        ratings.put(rateMovie, rate);
-//                        System.out.println(rateMovie + " rated " + rate + "⭐!");
-//                    } else {
-//                        System.out.println("Movie not found in your watchlist.");
-//                    }
-//                    break;
-//                case 4:
-//                    running = false;
-//                    System.out.println(" Goodbye!");
-//                    break;
-//                default:
-//                    System.out.println("Invalid choice. Try again.");
-//            }
-
-
-
