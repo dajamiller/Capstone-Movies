@@ -1,9 +1,13 @@
 package com.netflix;
 
+import java.util.ArrayList;
+
 public class MovieList {
     public int Si;
     private String title;
     private double rating;
+    private ArrayList<Movie> movies = new ArrayList<>();
+
 
     public MovieList(String title, double rating) {
         this.title = title;
@@ -39,6 +43,8 @@ public class MovieList {
     }
 
     public void addMovie(String title, double rating) {
+        movies.add(new Movie(title, rating));
+
     }
 
     public void displayAll() {
@@ -54,6 +60,8 @@ public class MovieList {
     }
 
     public void loadFromCsv(String s) {
+        list.loadFromCsv("movies.csv");
+
     }
 }
 
