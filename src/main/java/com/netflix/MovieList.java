@@ -6,7 +6,7 @@ public class MovieList {
     public int Si;
     private String title;
     private double rating;
-    private ArrayList<Movie> movies = new ArrayList<>();
+    private ArrayList<Movie> list = new ArrayList<>();
 
 
     public MovieList(String title, double rating) {
@@ -19,18 +19,22 @@ public class MovieList {
     }
 
     public String getTitle() {
+
         return title;
     }
 
     public void setTitle(String title) {
+
         this.title = title;
     }
 
     public double getRating() {
+
         return rating;
     }
 
     public void setRating(double rating) {
+
         this.rating = rating;
     }
 
@@ -43,7 +47,7 @@ public class MovieList {
     }
 
     public void addMovie(String title, double rating) {
-        movies.add(new Movie(title, rating));
+        list.add(new Movie(title, rating));
 
     }
 
@@ -60,7 +64,7 @@ public class MovieList {
     }
 
     public void loadFromCsv(String s) {
-        list.loadFromCsv("movies.csv");
+       // list.loadFromCsv("movies.csv");
 
     }
 }

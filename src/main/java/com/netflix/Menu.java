@@ -52,5 +52,6 @@ public class Menu {
         double rating = scanner.nextDouble();
         list.updateRating(title, rating);
         list.saveToCsv("movies.csv");
+
     }
 }
